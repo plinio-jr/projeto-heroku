@@ -3,7 +3,7 @@ from django.urls import path, include
 
 from rest_framework.routers import DefaultRouter
 
-from core.views import ListaViewSet, ProdutoViewSet, MercadoViewSet
+from core.views import ListaViewSet, ProdutoViewSet, MercadoViewSet, PerfilViewSet
 
 from drf_spectacular.views import (
     SpectacularAPIView,
@@ -22,6 +22,7 @@ router = DefaultRouter()
 router.register(r"listas", ListaViewSet)
 router.register(r"produtos", ProdutoViewSet)
 router.register(r"mercados", MercadoViewSet)
+router.register(r'perfis', PerfilViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -40,4 +41,8 @@ urlpatterns = [
         SpectacularRedocView.as_view(url_name="schema"),
         name="redoc",
     ),
+    path('accounts/', include('allauth.urls')),
+    path('dj-rest-auth/', include('dj_rest_auth.urls')),
+    path("auth/", include("dj_rest_auth.urls")),
+    path("auth/registration/", include("dj_rest_auth.registration.urls")),
 ]

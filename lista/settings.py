@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -33,23 +34,30 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
     "rest_framework",
+    'rest_framework.authtoken',
     "corsheaders",
     "rest_framework_simplejwt",
     "drf_spectacular",
-
+    'dj_rest_auth',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-     'corsheaders.middleware.CorsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -79,10 +87,6 @@ REST_FRAMEWORK = {
         "rest_framework.permissions.DjangoModelPermissions",
     ],
      "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
-    "DEFAULT_PERMISSION_CLASSES": [
-        "rest_framework.permissions.IsAuthenticated",
-    ]
-    
 }
 
 WSGI_APPLICATION = 'lista.wsgi.application'
@@ -150,3 +154,8 @@ SPECTACULAR_SETTINGS = {
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8080",
 ]
+
+MEDIA_URL = "http://localhost:8000/media/"
+MEDIA_ENDPOINT = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
+FILE_UPLOAD_PERMISSIONS = 0o640

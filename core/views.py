@@ -2,8 +2,8 @@ from django.shortcuts import render
 
 from rest_framework.viewsets import ModelViewSet
 
-from core.models import Lista, Mercado, Produto
-from core.serializers import ListaSerializer, MercadoSerializer, ProdutoSerializer
+from core.models import Lista, Mercado, Produto, Perfil
+from core.serializers import ListaSerializer, MercadoSerializer, ProdutoSerializer, PerfilSerializer
 
 class ListaViewSet(ModelViewSet):
     queryset = Lista.objects.all()
@@ -16,3 +16,7 @@ class MercadoViewSet(ModelViewSet):
 class ProdutoViewSet(ModelViewSet):
     queryset = Produto.objects.all()
     serializer_class = ProdutoSerializer
+    
+class PerfilViewSet(ModelViewSet):
+    queryset = Perfil.objects.all()
+    serializer_class = PerfilSerializer
