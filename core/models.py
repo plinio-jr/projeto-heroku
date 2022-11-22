@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib.auth.models import User
 
 class Mercado(models.Model):
     nome = models.CharField(max_length=100)
@@ -29,20 +28,11 @@ class Produto(models.Model):
 class Lista(models.Model):
     nome = models.CharField(max_length=50)
     descricao = models.CharField(max_length=100)
-    produto = models.ForeignKey(Produto, on_delete=models.PROTECT, related_name="+")
+    produto = models.ForeignKey(Produto, on_delete=models.PROTECT, related_name="+", blank=True)
     #publicacao = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name= 'listas' )
 
     def __str__(self):
         return f"{self.nome} ({self.descricao})"
-    
-class Perfil(models.Model):
-    first_name = models.CharField(max_length=50, null=True)
-    last_name = models.CharField(max_length=100, null=True)
-    email = models.EmailField()
-    usuario = models.OneToOneField(User, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f"{self.first_name} {self.last_name}"
 
     
 

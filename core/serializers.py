@@ -2,7 +2,7 @@ from dataclasses import fields
 from pyexpat import model
 from rest_framework.serializers import ModelSerializer
 
-from core.models import Lista, Mercado, Produto, Perfil
+from core.models import Lista, Mercado, Produto
 
 class ListaSerializer(ModelSerializer):
     class Meta:
@@ -19,7 +19,3 @@ class ProdutoSerializer(ModelSerializer):
         model = Produto
         fields = "__all__"
         
-class PerfilSerializer(ModelSerializer):
-    class Meta:
-        model = Perfil
-        fields = "__all__"
