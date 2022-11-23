@@ -19,7 +19,7 @@ class Produto(models.Model):
     preco = models.DecimalField(max_digits=5, decimal_places=2)
 
     mercado = models.ForeignKey(
-        Mercado, on_delete=models.PROTECT, related_name="produtos"
+        Mercado, on_delete=models.PROTECT, related_name="produtos", null=True, blank=True
     )
 
     def __str__(self):
@@ -28,14 +28,11 @@ class Produto(models.Model):
 class Lista(models.Model):
     nome = models.CharField(max_length=50)
     descricao = models.CharField(max_length=100)
-    produto = models.ForeignKey(Produto, on_delete=models.PROTECT, related_name="+", blank=True)
+    produto = models.ForeignKey(Produto, on_delete=models.PROTECT, related_name="+", blank=True, null=True)
     #publicacao = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name= 'listas' )
 
     def __str__(self):
         return f"{self.nome} ({self.descricao})"
-
-    
-
     
 
 
