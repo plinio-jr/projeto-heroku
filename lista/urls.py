@@ -12,21 +12,16 @@ from drf_spectacular.views import (
 )
 
 
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,
-)
-
-
 router = DefaultRouter()
 router.register(r"listas", ListaViewSet)
 router.register(r"produtos", ProdutoViewSet)
 router.register(r"mercados", MercadoViewSet)
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
     path("api/", include(router.urls)),
-    path("", include(router.urls)),
+    path("auth/", include("dj_rest_auth.urls")),
+    path("auth/registration/", include("dj_rest_auth.registration.urls")),
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path(
         "api/swagger/",
@@ -38,6 +33,4 @@ urlpatterns = [
         SpectacularRedocView.as_view(url_name="schema"),
         name="redoc",
     ),
-    path("auth/", include("dj_rest_auth.urls")),
-    path("auth/registration/", include("dj_rest_auth.registration.urls")),
 ]
