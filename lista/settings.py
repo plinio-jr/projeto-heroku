@@ -41,16 +41,16 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "core",
     "uploader",
-    "rest_framework",
-    "rest_framework.authtoken",
+    # "rest_framework",
+    # "rest_framework.authtoken",
     "corsheaders",
     "rest_framework_simplejwt",
     "drf_spectacular",
-    "dj_rest_auth",
-    "dj_rest_auth.registration",
-    "allauth",
-    "allauth.account",
-    "allauth.socialaccount",
+    # "dj_rest_auth",
+    # "dj_rest_auth.registration",
+    # "allauth",
+    # "allauth.account",
+    # "allauth.socialaccount",
 ]
 
 SITE_ID = 1
@@ -86,11 +86,12 @@ TEMPLATES = [
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
-        "dj_rest_auth.jwt_auth.JWTCookieAuthentication",
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
-    #"DEFAULT_PERMISSION_CLASSES": [
-        #"rest_framework.permissions.DjangoModelPermissions",
-    #],
+
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.DjangoModelPermissions",
+    ],
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 
